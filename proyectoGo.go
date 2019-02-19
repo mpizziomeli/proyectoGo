@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func main()  {
+func main() {
 	var migrate string
 	flag.StringVar(&migrate, "migrate", "no", "Creación de tablas")
 	flag.Parse()
