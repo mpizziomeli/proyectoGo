@@ -3,7 +3,6 @@ package controllers
 import (
 	"crypto/md5"
 	"crypto/sha256"
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"github.com/mpizziomeli/proyectoGo/proyectoGo/commons"
@@ -26,7 +25,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	//Encriptación Password
 	c := sha256.Sum256([]byte(user.Password))
-	pass := base64.URLEncoding.EncodeToString(c[:32])
+	pass := fmt.Sprintf("%x", c)
 
 	db.Where("email = ? and password = ?", user.Email, pass).First(&user)
 	//Esto para que no se devuelva el password en el response del JSON
