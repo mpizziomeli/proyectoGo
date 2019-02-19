@@ -11,10 +11,10 @@ import (
 
 var (
 	privateKey *rsa.PrivateKey
-	PublicKey *rsa.PublicKey
+	PublicKey  *rsa.PublicKey
 )
 
-func init()  {
+func init() {
 	privateBytes, err := ioutil.ReadFile("./keys/private.rsa")
 	if err != nil {
 		log.Fatal("No se pudo leer la private key")
@@ -35,16 +35,14 @@ func init()  {
 		log.Fatal("No se pudo parsear la public key")
 	}
 
-
-
 }
 
-func GenerateJWT(user models.User) string  {
+func GenerateJWT(user models.User) string {
 	claims := models.Claim{
 		User: user,
 		StandardClaims: jwt.StandardClaims{
-			ExpiresAt:time.Now().Add(time.Hour *2).Unix(),
-			Issuer: "Marcos John Golang",
+			ExpiresAt: time.Now().Add(time.Hour * 2).Unix(),
+			Issuer:    "Marcos John Golang",
 		},
 	}
 
